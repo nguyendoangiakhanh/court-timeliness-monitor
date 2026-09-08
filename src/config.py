@@ -61,6 +61,11 @@ CASE_TYPE_MAP = {
     "Crim": "Criminal",
 }
 
+# ---------------------------------------------------------------- charts
+# "plain"  - matplotlib defaults with chart junk removed. Reads as a working notebook.
+# "report" - the more designed treatment.
+CHART_STYLE = "plain"
+
 # ---------------------------------------------------------------- chart palette
 # Validated categorical slots 1 and 2 (see docs/methodology.md).
 BLUE = "#2a78d6"

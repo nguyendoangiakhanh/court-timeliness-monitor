@@ -16,27 +16,30 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from config import (BLUE, COMPLETENESS_FLOOR, FIGURE_DIR, GRID, INK, MUTED,
-                    ORANGE, OVERDUE_DAYS, PROCESSED_DIR, SURFACE)
+from config import (BLUE, CHART_STYLE, COMPLETENESS_FLOOR, FIGURE_DIR, GRID,
+                    INK, MUTED, ORANGE, OVERDUE_DAYS, PROCESSED_DIR, SURFACE)
+
+# Two styles. "plain" is matplotlib's own defaults with the chart junk removed -
+# it reads as a working notebook. "report" is the more designed version.
+# Set CHART_STYLE in src/config.py.
+if CHART_STYLE == "report":
+    plt.rcParams.update({
+        "figure.facecolor": SURFACE, "axes.facecolor": SURFACE,
+        "savefig.facecolor": SURFACE, "font.size": 10, "text.color": INK,
+        "axes.labelcolor": MUTED, "axes.edgecolor": GRID,
+        "xtick.color": MUTED, "ytick.color": MUTED,
+        "grid.color": GRID, "grid.linewidth": 0.8,
+    })
+else:
+    plt.rcParams.update(plt.rcParamsDefault)
+    plt.rcParams.update({"grid.alpha": 0.25})
 
 plt.rcParams.update({
-    "figure.facecolor": SURFACE,
-    "axes.facecolor": SURFACE,
-    "savefig.facecolor": SURFACE,
-    "font.family": "DejaVu Sans",
-    "font.size": 10,
-    "text.color": INK,
-    "axes.labelcolor": MUTED,
-    "axes.edgecolor": GRID,
-    "xtick.color": MUTED,
-    "ytick.color": MUTED,
+    "figure.dpi": 150,
     "axes.spines.top": False,
     "axes.spines.right": False,
     "axes.grid": True,
-    "grid.color": GRID,
-    "grid.linewidth": 0.8,
     "axes.axisbelow": True,
-    "figure.dpi": 150,
 })
 
 
@@ -86,7 +89,7 @@ def chart_distribution() -> None:
     med, mean = w.median(), w.mean()
 
     fig, ax = plt.subplots(figsize=(9.5, 4.0))
-    ax.hist(w, bins=45, color=BLUE, alpha=0.85, edgecolor=SURFACE, linewidth=0.6)
+    ax.hist(w, bins=45, color=BLUE, alpha=0.85, edgecolor="white", linewidth=0.6)
     ax.axvline(med, color=INK, lw=1.6, ls="-")
     ax.axvline(mean, color=ORANGE, lw=1.6, ls="--")
     top = ax.get_ylim()[1]
