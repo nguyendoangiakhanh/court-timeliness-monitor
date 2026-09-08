@@ -6,13 +6,13 @@ Synthetic data. Nothing here describes a real court.
 
 | | |
 |---|---|
-| Slowest region | Eastern — 157 days median |
-| Fastest region | Northern — 108 days median |
+| Slowest region | Eastern - 157 days median |
+| Fastest region | Northern - 108 days median |
 | Gap | 49 days (7 weeks) |
 
 Interpretation: in a service context, a spread this size is a question about
 consistency of access, not only about efficiency. It is worth separating *where a
-case is filed* from *what kind of case it is* before drawing any conclusion — the
+case is filed* from *what kind of case it is* before drawing any conclusion - the
 slowest court sits in Eastern, but the second slowest does not.
 
 ## 2. Backlog direction
@@ -27,21 +27,21 @@ The most important finding, and the one a dashboard would most easily get wrong.
 
 Median time to disposal can only be computed on cases that have closed. For
 recently filed cases, only the fast ones have closed. So recent periods are made up
-of a biased subset and the median falls — which reads as improvement.
+of a biased subset and the median falls - which reads as improvement.
 
 For Eastern:
 
 | Filing quarter | Closure rate | Median days | Reported? |
 |---|---:|---:|---|
-| earliest | 94% | — | yes |
-| 2025Q3 | — | 191 | yes |
-| 2026Q2 | 21% | 94 | **no — incomplete** |
+| earliest | 94% | - | yes |
+| 2025Q3 | - | 191 | yes |
+| 2026Q2 | 21% | 94 | **no - incomplete** |
 
 ### What the pipeline does about it
 
 1. Computes the closure rate for every filing quarter.
 2. Flags any quarter below 80% as incomplete.
-3. Reports the open backlog's age profile alongside — the measure that *does*
+3. Reports the open backlog's age profile alongside - the measure that *does*
    capture the slow cases, because it counts what is still waiting.
 4. Marks the incomplete region on the chart rather than leaving it to be misread.
 

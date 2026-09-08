@@ -107,7 +107,9 @@ usually arrive in. Every issue was decided on deliberately and logged:
 
 The extract supplies a duration column from the source system. The duration can
 also be derived independently from the filing and disposal dates. **For
-29 cases the two disagree.**
+29 cases in the analysis set the two disagree** (47 across the raw
+extract, before duplicates and unusable rows are removed - see
+`outputs/profile_report.md`).
 
 That is only findable by checking one source against an independent one - the same
 control an accountant applies when a ledger has to tie to a statement. Those rows
@@ -187,7 +189,11 @@ court-timeliness-monitor/
 | Decision | Why |
 |---|---|
 | IDs read as text | `"007"` read as a number becomes `7`, and the join fails |
+<<<<<<< HEAD
 | Dates parsed day-first explicitly | The default parse corrupts only the 1st–12th of each month - much harder to spot than everything being wrong |
+=======
+| Dates parsed day-first explicitly | The default parse corrupts only the 1st-12th of each month - much harder to spot than everything being wrong |
+>>>>>>> 7ba8a54 (Use hyphens not em-dashes in generated docs; clarify mismatch counts)
 | A blank disposal date is kept blank | It means the case is open. Filling it would invent a disposal |
 | Impossible rows flagged, not deleted | A silent fix hides a source-system problem |
 | `validate="m:1"` on the merge | Turns a silent fan-out into an immediate error |

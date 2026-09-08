@@ -1,4 +1,4 @@
-"""Stage 5 — generate README.md and docs/findings.md from the pipeline outputs.
+"""Stage 5 - generate README.md and docs/findings.md from the pipeline outputs.
 
 Every figure quoted in the documentation is read from the result tables rather
 than typed by hand, so the prose cannot drift away from the data. Re-running the
@@ -75,7 +75,7 @@ def readme(f: dict) -> str:
     )
     return f"""# Court Timeliness Monitor
 
-**An end-to-end analytics pipeline on synthetic public-sector data — Python for
+**An end-to-end analytics pipeline on synthetic public-sector data - Python for
 cleaning and analysis, Power BI for the reporting layer.**
 
 > ⚠️ **The data in this repository is synthetic.** It was generated for practice
@@ -106,7 +106,7 @@ what the data can actually support, and what it cannot.
 
 The mean sits **{h['mean_days_national'] - h['median_days_national']:.0f} days above
 the median**. The distribution has a long right tail, so the mean describes a case
-that mostly does not exist — every headline figure here is a median.
+that mostly does not exist - every headline figure here is a median.
 
 ![Distribution](outputs/figures/02_distribution.png)
 
@@ -117,7 +117,7 @@ that mostly does not exist — every headline figure here is a median.
 ### 1. Where you file changes how long you wait
 
 {f['slow_region']} has a median of **{f['slow_region_days']:.0f} days** against
-**{f['fast_region_days']:.0f}** in {f['fast_region']} — a gap of
+**{f['fast_region_days']:.0f}** in {f['fast_region']} - a gap of
 **{f['region_gap']:.0f} days, roughly {f['region_gap']/7:.0f} weeks**.
 
 ![By region](outputs/figures/03_region.png)
@@ -144,7 +144,7 @@ Plotted by filing quarter, {f['focus']} deteriorates steadily to
 **{f['last_days']:.0f} days** by {f['last_q']}.
 
 It has not improved. **Only closed cases can be measured**, and in recent quarters
-only the fast ones have closed — the slow cases are still open and invisible to the
+only the fast ones have closed - the slow cases are still open and invisible to the
 measure. The closure rate makes it explicit: **{f['first_closure']:.0%}** of the
 earliest quarter's filings have closed, against **{f['last_closure']:.0%}** of the
 most recent.
@@ -152,8 +152,8 @@ most recent.
 ![Censoring](outputs/figures/06_censoring.png)
 
 The pipeline computes that closure rate per quarter and flags any quarter below
-{COMPLETENESS_FLOOR:.0%} as incomplete — **{f['n_incomplete']} quarters** for
-{f['focus']} — rather than reporting an improvement that is not there.
+{COMPLETENESS_FLOOR:.0%} as incomplete - **{f['n_incomplete']} quarters** for
+{f['focus']} - rather than reporting an improvement that is not there.
 
 The measure that *does* see the slow cases is the age profile of the open backlog,
 which is why it is reported alongside:
@@ -173,9 +173,11 @@ usually arrive in. Every issue was decided on deliberately and logged:
 
 The extract supplies a duration column from the source system. The duration can
 also be derived independently from the filing and disposal dates. **For
-{f['mismatch']} cases the two disagree.**
+{f['mismatch']} cases in the analysis set the two disagree** (47 across the raw
+extract, before duplicates and unusable rows are removed - see
+`outputs/profile_report.md`).
 
-That is only findable by checking one source against an independent one — the same
+That is only findable by checking one source against an independent one - the same
 control an accountant applies when a ledger has to tie to a statement. Those rows
 are quantified and flagged, not corrected: silently overwriting them would hide a
 problem in the source system rather than surface it.
@@ -183,7 +185,7 @@ problem in the source system rather than surface it.
 ### What was excluded, and why
 
 {h['excluded_rows']} rows are flagged `quality_flag = True` and excluded from
-analysis — impossible dates, and court IDs that do not exist in the lookup. They
+analysis - impossible dates, and court IDs that do not exist in the lookup. They
 remain in `cases_clean.csv` with a reason attached, so the exclusion is visible
 rather than invisible.
 
@@ -191,8 +193,8 @@ rather than invisible.
 
 Any figure resting on fewer than {SUPPRESSION_THRESHOLD} cases is suppressed before
 it is reported. In a small jurisdiction a cell of two or three can identify a
-person. Real suppression is harder than this — where row totals are also published,
-a reader can sometimes recover a suppressed cell by subtraction — but the principle
+person. Real suppression is harder than this - where row totals are also published,
+a reader can sometimes recover a suppressed cell by subtraction - but the principle
 belongs in the pipeline rather than in a caveat nobody reads.
 
 ---
@@ -213,7 +215,7 @@ python run_pipeline.py
 ```
 
 Runs in a few seconds and rewrites everything in `data/processed/` and `outputs/`,
-including this README. The pipeline is **deterministic** — the reporting date is
+including this README. The pipeline is **deterministic** - the reporting date is
 pinned in `src/config.py` rather than taken from `today()`, so re-running it next
 month cannot silently change the results.
 
@@ -223,7 +225,7 @@ month cannot silently change the results.
 court-timeliness-monitor/
 ├── run_pipeline.py            # runs all five stages in order
 ├── src/
-│   ├── config.py              # paths, thresholds, palette — every tunable in one place
+│   ├── config.py              # paths, thresholds, palette - every tunable in one place
 │   ├── profile_data.py        # stage 1: profile, change nothing
 │   ├── clean_data.py          # stage 2: clean, flag, reconcile, merge
 │   ├── analyse.py             # stage 3: reporting tables + the censoring check
@@ -248,7 +250,7 @@ court-timeliness-monitor/
 | Decision | Why |
 |---|---|
 | IDs read as text | `"007"` read as a number becomes `7`, and the join fails |
-| Dates parsed day-first explicitly | The default parse corrupts only the 1st–12th of each month — much harder to spot than everything being wrong |
+| Dates parsed day-first explicitly | The default parse corrupts only the 1st-12th of each month - much harder to spot than everything being wrong |
 | A blank disposal date is kept blank | It means the case is open. Filling it would invent a disposal |
 | Impossible rows flagged, not deleted | A silent fix hides a source-system problem |
 | `validate="m:1"` on the merge | Turns a silent fan-out into an immediate error |
@@ -263,7 +265,7 @@ Python 3.11+ · pandas · matplotlib · Power BI Desktop
 
 ---
 
-*Built by Kevin Nguyen — Bachelor of Commerce (Accounting and Business Analytics),
+*Built by Kevin Nguyen - Bachelor of Commerce (Accounting and Business Analytics),
 University of Auckland. Synthetic data; not affiliated with any government agency.*
 """
 
@@ -278,13 +280,13 @@ Synthetic data. Nothing here describes a real court.
 
 | | |
 |---|---|
-| Slowest region | {f['slow_region']} — {f['slow_region_days']:.0f} days median |
-| Fastest region | {f['fast_region']} — {f['fast_region_days']:.0f} days median |
+| Slowest region | {f['slow_region']} - {f['slow_region_days']:.0f} days median |
+| Fastest region | {f['fast_region']} - {f['fast_region_days']:.0f} days median |
 | Gap | {f['region_gap']:.0f} days ({f['region_gap']/7:.0f} weeks) |
 
 Interpretation: in a service context, a spread this size is a question about
 consistency of access, not only about efficiency. It is worth separating *where a
-case is filed* from *what kind of case it is* before drawing any conclusion — the
+case is filed* from *what kind of case it is* before drawing any conclusion - the
 slowest court sits in {f['court'].iloc[0]['region']}, but the second slowest does not.
 
 ## 2. Backlog direction
@@ -299,21 +301,21 @@ The most important finding, and the one a dashboard would most easily get wrong.
 
 Median time to disposal can only be computed on cases that have closed. For
 recently filed cases, only the fast ones have closed. So recent periods are made up
-of a biased subset and the median falls — which reads as improvement.
+of a biased subset and the median falls - which reads as improvement.
 
 For {f['focus']}:
 
 | Filing quarter | Closure rate | Median days | Reported? |
 |---|---:|---:|---|
-| earliest | {f['first_closure']:.0%} | — | yes |
-| {f['peak_q']} | — | {f['peak_days']:.0f} | yes |
-| {f['last_q']} | {f['last_closure']:.0%} | {f['last_days']:.0f} | **no — incomplete** |
+| earliest | {f['first_closure']:.0%} | - | yes |
+| {f['peak_q']} | - | {f['peak_days']:.0f} | yes |
+| {f['last_q']} | {f['last_closure']:.0%} | {f['last_days']:.0f} | **no - incomplete** |
 
 ### What the pipeline does about it
 
 1. Computes the closure rate for every filing quarter.
 2. Flags any quarter below {COMPLETENESS_FLOOR:.0%} as incomplete.
-3. Reports the open backlog's age profile alongside — the measure that *does*
+3. Reports the open backlog's age profile alongside - the measure that *does*
    capture the slow cases, because it counts what is still waiting.
 4. Marks the incomplete region on the chart rather than leaving it to be misread.
 
@@ -334,7 +336,7 @@ For {f['focus']}:
 
 def main() -> None:
     print("=" * 62)
-    print("STAGE 5 — REPORT")
+    print("STAGE 5 - REPORT")
     print("=" * 62)
     f = facts()
     (ROOT / "README.md").write_text(readme(f), encoding="utf-8")
