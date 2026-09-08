@@ -1,0 +1,5 @@
+region,closed_cases,median_days,mean_days,p75_days,open_cases,overdue_cases,overdue_pct
+Eastern,534,157.0,179.0,237.25,186,38,20.4
+Central,759,136.0,161.0,209.5,257,65,25.3
+Southern,1125,115.0,133.0,171.0,252,54,21.4
+Northern,851,108.0,131.0,169.5,186,41,22.0

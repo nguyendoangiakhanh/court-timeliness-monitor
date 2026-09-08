@@ -1,0 +1,9 @@
+issue,rows_affected,decision,reason
+`case_type` had 21 distinct values,17,"Trimmed, title-cased and mapped variants -> 4 canonical values","Casing, whitespace and abbreviations only; no genuine category was merged"
+`status` had 7 distinct values,5,"Trimmed, title-cased and mapped variants -> 2 canonical values","Casing, whitespace and abbreviations only; no genuine category was merged"
+Duplicate case IDs,38,Kept the more complete record per case ID,Pairs disagreed on status; the row with a disposal date is the later extract
+Rows where disposed before filed,18,Flagged and excluded from analysis; retained in the file,Correcting silently would hide a source-system problem
+Rows where filed in the future,5,Flagged and excluded from analysis; retained in the file,Correcting silently would hide a source-system problem
+Rows where court_id not in lookup,31,Flagged and excluded from analysis; retained in the file,Correcting silently would hide a source-system problem
+`reported_days` disagrees with the duration calculated from the dates,47,Quantified and flagged; the calculated duration is used for analysis,Only findable by checking the source figure against an independent recomputation
+Cases with no matching court in the lookup,31,Left join retained them; already flagged and excluded from court-level analysis,"An anti-join finding worth reporting to the data owner, not deleting"

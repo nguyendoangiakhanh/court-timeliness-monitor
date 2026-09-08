@@ -1,0 +1,13 @@
+court_id,court_name,region,court_type
+01,Northbridge District Court,Northern,District
+02,Kauri Point District Court,Northern,District
+03,Harbourview High Court,Northern,High
+04,Riverton District Court,Central,District
+05,Mistvale District Court,Central,District
+06,Central Plains High Court,Central,High
+07,Eastfield District Court,Eastern,District
+08,Cape Lawson District Court,Eastern,District
+09,Southgate District Court,Southern,District
+10,Fernbay District Court,Southern,District
+11,Southern Ranges High Court,Southern,High
+12,Willow Creek District Court,Southern,District

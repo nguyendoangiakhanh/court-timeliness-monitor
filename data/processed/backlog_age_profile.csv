@@ -1,0 +1,13 @@
+region,age_band,open_cases
+Central,0-3 months,33
+Central,3-12 months,159
+Central,12+ months,65
+Eastern,0-3 months,22
+Eastern,3-12 months,126
+Eastern,12+ months,38
+Northern,0-3 months,45
+Northern,3-12 months,100
+Northern,12+ months,41
+Southern,0-3 months,46
+Southern,3-12 months,152
+Southern,12+ months,54
