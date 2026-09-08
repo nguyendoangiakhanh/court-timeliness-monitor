@@ -7,3 +7,7 @@ venv/
 .DS_Store
 *.pbix
 # macOS
+
+# Generated charts - the README uses GitHub-hosted images,
+# and `python run_pipeline.py` regenerates these locally.
+outputs/figures/
