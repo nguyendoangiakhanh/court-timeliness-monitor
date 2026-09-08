@@ -70,7 +70,7 @@ ax.set_xlabel("Median days to disposal")
 ```
 
 <img width="1023" height="572" alt="image" src="https://github.com/user-attachments/assets/53160a64-02b0-4b0b-b08d-b760fb50536b" />
-<!-- PASTE SCREENSHOT: median by court -->
+<img width="1157" height="702" alt="image" src="https://github.com/user-attachments/assets/596b3492-04a7-4213-aa56-666f3164f19e" />
 
 ### 2. The backlog is growing
 
@@ -122,7 +122,7 @@ q["closure_rate"] = q.closed / q.filed
 q["complete"] = q.closure_rate >= 0.80
 ```
 
-<!-- PASTE SCREENSHOT: censoring / closure rate -->
+<img width="1222" height="637" alt="image" src="https://github.com/user-attachments/assets/bc0aca4c-e2d1-469d-aaf5-8d9d2009b9c1" />
 
 The measure that *does* see the slow cases is the age profile of the open backlog,
 which is why it is reported alongside:
