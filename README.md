@@ -44,7 +44,7 @@ ax.set_xlabel("Days from filing to disposal"); ax.set_ylabel("Cases")
 ax.legend(frameon=False)
 ```
 
-<!-- PASTE SCREENSHOT: distribution -->
+<img width="1156" height="637" alt="image" src="https://github.com/user-attachments/assets/64c6122a-ea7a-4446-a7c1-3ab2c83da177" />
 
 ---
 
@@ -69,7 +69,7 @@ ax.bar_label(bars, fmt="%.0f", padding=4)
 ax.set_xlabel("Median days to disposal")
 ```
 
-<!-- PASTE SCREENSHOT: median by region -->
+<img width="1023" height="572" alt="image" src="https://github.com/user-attachments/assets/53160a64-02b0-4b0b-b08d-b760fb50536b" />
 <!-- PASTE SCREENSHOT: median by court -->
 
 ### 2. The backlog is growing
@@ -88,7 +88,7 @@ ax.set_ylabel("Cases"); ax.legend(frameon=False)
 plt.xticks(rotation=45, ha="right")
 ```
 
-<!-- PASTE SCREENSHOT: filings vs disposals -->
+<img width="1156" height="637" alt="image" src="https://github.com/user-attachments/assets/c5640293-624f-44d1-90d3-9397cf1a0521" />
 
 ### 3. The apparent recent improvement is a measurement artefact
 
@@ -141,7 +141,7 @@ for col in pivot.columns:
 ax.set_xlabel("Open cases"); ax.legend(frameon=False)
 ```
 
-<!-- PASTE SCREENSHOT: backlog by age -->
+<img width="1091" height="572" alt="image" src="https://github.com/user-attachments/assets/c05d3e0c-a170-44db-a010-8669380aaaf6" />
 
 ---
 
@@ -161,7 +161,7 @@ usually arrive in. Every issue was decided on deliberately and logged:
 | `reported_days` disagrees with the duration calculated from the dates |              47 | Quantified and flagged; the calculated duration is used for analysis            | Only findable by checking the source figure against an independent recomputation |
 | Cases with no matching court in the lookup                            |              31 | Left join retained them; already flagged and excluded from court-level analysis | An anti-join finding worth reporting to the data owner, not deleting             |
 
-<!-- PASTE SCREENSHOT: data quality issues chart -->
+<img width="1164" height="702" alt="image" src="https://github.com/user-attachments/assets/9764897b-1f42-49b1-857f-2f2fa793544e" />
 
 ### The reconciliation
 
