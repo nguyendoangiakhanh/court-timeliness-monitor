@@ -1,6 +1,6 @@
 # Court Timeliness Monitor
 
-**An end-to-end analytics pipeline on synthetic public-sector data — Python for
+**An end-to-end analytics pipeline on synthetic public-sector data - Python for
 cleaning and analysis, Power BI for the reporting layer.**
 
 > ⚠️ **The data in this repository is synthetic.** It was generated for practice
@@ -31,7 +31,7 @@ what the data can actually support, and what it cannot.
 
 The mean sits **23 days above
 the median**. The distribution has a long right tail, so the mean describes a case
-that mostly does not exist — every headline figure here is a median.
+that mostly does not exist - every headline figure here is a median.
 
 ![Distribution](outputs/figures/02_distribution.png)
 
@@ -42,7 +42,7 @@ that mostly does not exist — every headline figure here is a median.
 ### 1. Where you file changes how long you wait
 
 Eastern has a median of **157 days** against
-**108** in Northern — a gap of
+**108** in Northern - a gap of
 **49 days, roughly 7 weeks**.
 
 ![By region](outputs/figures/03_region.png)
@@ -69,7 +69,7 @@ Plotted by filing quarter, Eastern deteriorates steadily to
 **94 days** by 2026Q2.
 
 It has not improved. **Only closed cases can be measured**, and in recent quarters
-only the fast ones have closed — the slow cases are still open and invisible to the
+only the fast ones have closed - the slow cases are still open and invisible to the
 measure. The closure rate makes it explicit: **94%** of the
 earliest quarter's filings have closed, against **21%** of the
 most recent.
@@ -77,8 +77,8 @@ most recent.
 ![Censoring](outputs/figures/06_censoring.png)
 
 The pipeline computes that closure rate per quarter and flags any quarter below
-80% as incomplete — **3 quarters** for
-Eastern — rather than reporting an improvement that is not there.
+80% as incomplete - **3 quarters** for
+Eastern - rather than reporting an improvement that is not there.
 
 The measure that *does* see the slow cases is the age profile of the open backlog,
 which is why it is reported alongside:
@@ -109,7 +109,7 @@ The extract supplies a duration column from the source system. The duration can
 also be derived independently from the filing and disposal dates. **For
 29 cases the two disagree.**
 
-That is only findable by checking one source against an independent one — the same
+That is only findable by checking one source against an independent one - the same
 control an accountant applies when a ledger has to tie to a statement. Those rows
 are quantified and flagged, not corrected: silently overwriting them would hide a
 problem in the source system rather than surface it.
@@ -117,7 +117,7 @@ problem in the source system rather than surface it.
 ### What was excluded, and why
 
 50 rows are flagged `quality_flag = True` and excluded from
-analysis — impossible dates, and court IDs that do not exist in the lookup. They
+analysis - impossible dates, and court IDs that do not exist in the lookup. They
 remain in `cases_clean.csv` with a reason attached, so the exclusion is visible
 rather than invisible.
 
@@ -125,8 +125,8 @@ rather than invisible.
 
 Any figure resting on fewer than 5 cases is suppressed before
 it is reported. In a small jurisdiction a cell of two or three can identify a
-person. Real suppression is harder than this — where row totals are also published,
-a reader can sometimes recover a suppressed cell by subtraction — but the principle
+person. Real suppression is harder than this - where row totals are also published,
+a reader can sometimes recover a suppressed cell by subtraction - but the principle
 belongs in the pipeline rather than in a caveat nobody reads.
 
 ---
@@ -152,7 +152,7 @@ python run_pipeline.py
 ```
 
 Runs in a few seconds and rewrites everything in `data/processed/` and `outputs/`,
-including this README. The pipeline is **deterministic** — the reporting date is
+including this README. The pipeline is **deterministic** - the reporting date is
 pinned in `src/config.py` rather than taken from `today()`, so re-running it next
 month cannot silently change the results.
 
@@ -162,7 +162,7 @@ month cannot silently change the results.
 court-timeliness-monitor/
 ├── run_pipeline.py            # runs all five stages in order
 ├── src/
-│   ├── config.py              # paths, thresholds, palette — every tunable in one place
+│   ├── config.py              # paths, thresholds, palette - every tunable in one place
 │   ├── profile_data.py        # stage 1: profile, change nothing
 │   ├── clean_data.py          # stage 2: clean, flag, reconcile, merge
 │   ├── analyse.py             # stage 3: reporting tables + the censoring check
@@ -187,7 +187,7 @@ court-timeliness-monitor/
 | Decision | Why |
 |---|---|
 | IDs read as text | `"007"` read as a number becomes `7`, and the join fails |
-| Dates parsed day-first explicitly | The default parse corrupts only the 1st–12th of each month — much harder to spot than everything being wrong |
+| Dates parsed day-first explicitly | The default parse corrupts only the 1st–12th of each month - much harder to spot than everything being wrong |
 | A blank disposal date is kept blank | It means the case is open. Filling it would invent a disposal |
 | Impossible rows flagged, not deleted | A silent fix hides a source-system problem |
 | `validate="m:1"` on the merge | Turns a silent fan-out into an immediate error |
@@ -202,5 +202,5 @@ Python 3.11+ · pandas · matplotlib · Power BI Desktop
 
 ---
 
-*Built by Kevin Nguyen — Bachelor of Commerce (Accounting and Business Analytics),
+*Built by Kevin Nguyen - Bachelor of Commerce (Accounting and Business Analytics),
 University of Auckland. Synthetic data; not affiliated with any government agency.*
